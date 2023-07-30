@@ -74,14 +74,21 @@ class MoverHandler(FileSystemEventHandler):
             if name.endswith(extension) or name.endswith(extension.upper()):
                 dest = dest_dir_music
                 move_file(dest, entry, name)
-                logging.info((f"Moved audio file: {name}"))
+                logging.info(f"Moved audio file: {name}")
 
     def check_video_files(self, entry, name):
         for extension in video_extensions:
             if name.endswith(extension) or name.endswith(extension.upper()):
                 dest = dest_dir_video
                 move_file(dest, entry, name)
-                logging.info((f"Moved video file: {name}"))
+                logging.info(f"Moved video file: {name}")
+
+    def check_image_files(self, entry, name):
+        for extension in image_extensions:
+            if name.endswith(extension) or name.endswith(extension.uppr()):
+                dest = dest_dir_image
+                move_file(dest, entry, name)
+                logging.info(f"Moved audio file: {name}")
 
 
         
