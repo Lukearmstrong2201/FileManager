@@ -85,11 +85,33 @@ class MoverHandler(FileSystemEventHandler):
 
     def check_image_files(self, entry, name):
         for extension in image_extensions:
-            if name.endswith(extension) or name.endswith(extension.uppr()):
+            if name.endswith(extension) or name.endswith(extension.upper()):
                 dest = dest_dir_image
                 move_file(dest, entry, name)
                 logging.info(f"Moved audio file: {name}")
 
+    def check_document_files(self, entry, name):
+        for extension in document_extensions:
+            if name.endswith(extension) or name.endswith(extension.upper()):
+                dest = dest_dir_documents
+                move_file(dest, entry, name)
+                logging.infor(f"Moved document file: {name}")
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO,
+                        format='%(asctime)s - %(message)s',
+                        datefmt='%Y-%m-%d %H:%M:%S')
+    path = source_dir
+    event_handler = MoverHandler()
+    observer = Observer()
+    observer.schedule(event_handler, path, recursive=True)
+    observer.start()
+    try:
+        while True:
+            sleep(10)
+    except KeyboardInterrupt:
+        observer.stop()
+    observer.join()
 
         
         
