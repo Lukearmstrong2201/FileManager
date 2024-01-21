@@ -7,7 +7,7 @@ import logging
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-# ? folder to track e.g. Windows: "C:\\Users\\UserName\\Downloads"
+# folder to track e.g. Windows: "C:\\Users\\UserName\\Downloads"
 source_dir = "/Users/lukearmstrong/Downloads"
 dest_dir_sfx = "/Users/lukearmstrong/Documents/sounds"
 
@@ -16,16 +16,15 @@ dest_dir_music = "/Users/lukearmstrong/Documents/music "
 dest_dir_video = "/Users/lukearmstrong/Documents/videos"
 dest_dir_image = "/Users/lukearmstrong/Documents/images"
 
-
-# ? supported image types
+# supported image types
 image_extensions = [".jpg", ".jpeg", ".jpe", ".jif", ".jfif", ".jfi", ".png", ".gif", ".webp", ".tiff", ".tif", ".psd", ".raw", ".arw", ".cr2", ".nrw",
                     ".k25", ".bmp", ".dib", ".heif", ".heic", ".ind", ".indd", ".indt", ".jp2", ".j2k", ".jpf", ".jpf", ".jpx", ".jpm", ".mj2", ".svg", ".svgz", ".ai", ".eps", ".ico"]
-# ? supported Video types
+# supported Video types
 video_extensions = [".webm", ".mpg", ".mp2", ".mpeg", ".mpe", ".mpv", ".ogg",
                     ".mp4", ".mp4v", ".m4v", ".avi", ".wmv", ".mov", ".qt", ".flv", ".swf", ".avchd"]
-# ? supported Audio types
+# supported Audio types
 audio_extensions = [".m4a", ".flac", "mp3", ".wav", ".wma", ".aac"]
-# ? supported Document types
+# supported Document types
 document_extensions = [".doc", ".docx", ".odt",
                        ".pdf", ".xls", ".xlsx", ".ppt", ".pptx"]
 
@@ -88,14 +87,14 @@ class MoverHandler(FileSystemEventHandler):
             if name.endswith(extension) or name.endswith(extension.upper()):
                 dest = dest_dir_image
                 move_file(dest, entry, name)
-                logging.info(f"Moved audio file: {name}")
+                logging.info(f"Moved image file: {name}")
 
     def check_document_files(self, entry, name):
         for extension in document_extensions:
             if name.endswith(extension) or name.endswith(extension.upper()):
                 dest = dest_dir_documents
                 move_file(dest, entry, name)
-                logging.infor(f"Moved document file: {name}")
+                logging.info(f"Moved document file: {name}")
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
@@ -112,8 +111,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
-
-        
-        
+    
 
 
